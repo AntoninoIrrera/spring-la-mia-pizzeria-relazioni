@@ -60,6 +60,8 @@ public class PizzaController {
 		Optional<Pizza> firstPizzaOpt = pizzaService.findByIdWithOffertaSpeciale(id);
 		Pizza offertePizza = firstPizzaOpt.get();
 		
+	
+		
 		model.addAttribute("pizza", pizza);
 		model.addAttribute("offerte",offertePizza.getOffertaSpeciales());
 		

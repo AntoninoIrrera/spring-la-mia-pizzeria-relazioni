@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/offerta/update/{id} (id=${offertaSpeciale.id})}"  method="post">
+	<input type="hidden" th:field="${offertaSpeciale.pizza}">
+		<label>titolo:</label>
+		<input type="text" name="titolo" th:value="${offertaSpeciale.titolo}">
+		<p th:if="${errori != null && errori.hasFieldErrors('titolo')}" th:text="${errori.getFieldError('titolo').defaultMessage}"></p>
+		<label>Data di inizio:</label>
+		<input type="date" name="dataDiInizio" th:value="${offertaSpeciale.dataDiInizio}">
+		<p th:if="${errori != null && errori.hasFieldErrors('dataDiInizio')}" th:text="${errori.getFieldError('dataDiInizio').defaultMessage}"></p>
+		<label>Data di fine:</label>
+		<input type="date" name="dataDiFine" th:value="${offertaSpeciale.dataDiFine}">
+		<p th:if="${errori != null && errori.hasFieldErrors('dataDiFine')}" th:text="${errori.getFieldError('dataDiFine').defaultMessage}"></p>
+		<label>percSconto:</label>
+		<input type="number" name="percSconto" th:value="${offertaSpeciale.percSconto}">
+		<p th:if="${errori != null && errori.hasFieldErrors('percSconto')}" th:text="${errori.getFieldError('percSconto').defaultMessage}"></p>
+		<button type="submit">Modifica</button>
+	</form>
+</body>
+</html>

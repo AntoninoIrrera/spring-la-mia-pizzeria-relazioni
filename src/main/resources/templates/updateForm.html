@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="" method="post">
+		<label>nome:</label>
+		<input type="text" name="nome" th:value="${pizza.nome}">
+		<p th:if="${errori != null && errori.hasFieldErrors('nome')}" th:text="${errori.getFieldError('nome').defaultMessage}"></p>
+		<label>descrizione:</label>
+		<textarea rows="10" cols="10" name="descrizione" th:text="${pizza.descrizione}"></textarea>
+		<p th:if="${errori != null && errori.hasFieldErrors('descrizione')}" th:text="${errori.getFieldError('descrizione').defaultMessage}"></p>
+		<label>foroUrl:</label>
+		<textarea rows="10" cols="10" name="fotoUrl" th:text="${pizza.fotoUrl}"></textarea>
+		<p th:if="${errori != null && errori.hasFieldErrors('fotoUrl')}" th:text="${errori.getFieldError('fotoUrl').defaultMessage}"></p>
+		<label>prezzo:</label>
+		<input type="number" name="prezzo" th:value="${pizza.prezzo}">
+		<p th:if="${errori != null && errori.hasFieldErrors('prezzo')}" th:text="${errori.getFieldError('prezzo').defaultMessage}"></p>
+		<button type="submit">Modifica</button>
+	</form>
+</body>
+</html>

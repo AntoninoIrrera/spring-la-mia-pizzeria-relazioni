@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1>pizza</h1>
+
+
+	<h4 th:text="${pizza.id}"></h4>
+	<h1 th:text="${pizza.nome}"></h1>
+	<p th:text="${pizza.descrizione}"></p>
+	<h2 th:text="${pizza.prezzo}"></h2>
+	
+	<img class="w-50 h-50" th:src="${pizza.fotoUrl}"/>
+	
+	<h1>offerte:</h1>
+	<a th:href="@{'/offerta/create?id='+ ${pizza.id}}">Crea nuova Offerta</a>
+	
+	<div th:each="offerta : ${offerte}" >
+		<h2 th:text="${offerta.titolo}"></h2>
+			<h2 th:text="${offerta.percSconto}"></h2> 
+			<h2 th:text="${offerta.dataDiInizio}"></h2> 
+			<h2 th:text="${offerta.dataDiFine}"></h2> 
+			<a class="btn btn-primary" th:href="@{/offerta/update/{id}(id=${offerta.id})}">modifica</a>
+	</div>
+	
+	
+</body>
+</html>

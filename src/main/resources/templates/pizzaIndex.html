@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<title>Insert title here</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/pizza/filtro}">
+	<input type="text" name="nome" th:value="${nome}">
+	<button type="submit">Cerca</button>
+</form>
+
+<a th:href="@{/pizza/create}">Crea nuova Pizza</a>
+
+<table class="table" th:if="${pizze.size() != 0}">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nome</th>
+      <th scope="col">descrizione</th>
+      <th scope="col">fotoUrl</th>
+      <th scope="col">prezzo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="pizza : ${pizze}">
+      <th scope="row" th:text="${pizza.id}"></th>
+      <td th:text="${pizza.nome}"></td>
+      <td th:text="${pizza.descrizione}"></td>
+       <td><img class="w-50 h-50" th:src="${pizza.fotoUrl}"/></td>
+      <td th:text="${pizza.prezzo}"></td>
+        <td>
+      		<a class="btn btn-primary" th:href="@{/pizza/{id}(id=${pizza.id})}">show</a>
+    	</td>
+    	<td>
+      		<a class="btn btn-primary" th:href="@{/pizza/update/{id}(id=${pizza.id})}">update</a>
+    	</td>
+    	<td>
+      		<a class="btn btn-primary" th:href="@{/pizza/delete/{id}(id=${pizza.id})}">delete</a>
+    	</td>
+    </tr>
+  </tbody>
+</table>
+
+<div th:if="${pizze.size() == 0}">
+	<h1>non ci stanno pizze frate</h1>
+</div>
+
+</body>
+</html>

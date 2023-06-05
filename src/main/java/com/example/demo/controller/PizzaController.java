@@ -86,6 +86,7 @@ public class PizzaController {
 		model.addAttribute("ingredienti",ingredienti);
 		model.addAttribute("pizza",new Pizza());
 		
+		
 		return "createForm";
 	}
 	
@@ -97,7 +98,9 @@ public class PizzaController {
 //			for(ObjectError err : bindingResult.getAllErrors()) {
 //				System.out.println(err.getDefaultMessage());
 //			}
-			
+			List<Ingredienti> ingredienti = ingredientiService.findAll();
+			model.addAttribute("ingredienti", ingredienti);
+		      
 			model.addAttribute("pizza",pizza);
 			model.addAttribute("errori",bindingResult);
 			
@@ -155,6 +158,8 @@ public class PizzaController {
 		
 		if(bindingResult.hasErrors()) {
 			
+			  List<Ingredienti> ingredienti = ingredientiService.findAll();
+		        model.addAttribute("ingredienti", ingredienti);
 			
 			
 			model.addAttribute("pizza",pizza);

@@ -1,6 +1,7 @@
 package com.example.demo.pojo;
 
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -59,6 +60,19 @@ public class Ingredienti {
 		return "Ingredienti [nome=" + nome + "]";
 	}
 	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        
+	        Ingredienti other = (Ingredienti) o;
+	        return Objects.equals(id, other.id);
+	    }
+	    
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(id);
+	    }
 	
 	
 	

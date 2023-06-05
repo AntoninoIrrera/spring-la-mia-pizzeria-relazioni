@@ -23,7 +23,7 @@
 			th:each="ingrediente : ${ingredienti}"
 			
 		>
-			<input th:id="${'ingrediente-' + ingrediente.id}" th:value="${ingrediente.id}" type="checkbox" name="ingredienti">
+			<input th:id="${'ingrediente-' + ingrediente.id}" th:value="${ingrediente.id}" type="checkbox" name="ingredienti" th:checked="${pizza.ingredienti != null and pizza.ingredienti.contains(ingrediente)}">
 			<label th:for="${'ingrediente-' + ingrediente.id}">[[ ${ingrediente.nome} ]]</label>
 		</div>
 		

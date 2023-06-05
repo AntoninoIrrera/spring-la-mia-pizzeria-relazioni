@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -40,6 +41,9 @@ public class Pizza {
 	@NotNull(message = "il prezzo non puo essere vuoto")
 	private float prezzo;
 	
+	@ManyToMany
+	private List<Ingredienti> ingredienti;
+	
 	public Pizza() {}
 
 	public Pizza(String nome, String descrizione, String fotoUrl, float prezzo) {
@@ -51,6 +55,14 @@ public class Pizza {
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Ingredienti> getIngredienti() {
+		return ingredienti;
+	}
+
+	public void setIngredienti(List<Ingredienti> ingredienti) {
+		this.ingredienti = ingredienti;
 	}
 
 	public void setId(int id) {

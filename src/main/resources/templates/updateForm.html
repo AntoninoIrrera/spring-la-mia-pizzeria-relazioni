@@ -18,6 +18,17 @@
 		<label>prezzo:</label>
 		<input type="number" name="prezzo" th:value="${pizza.prezzo}">
 		<p th:if="${errori != null && errori.hasFieldErrors('prezzo')}" th:text="${errori.getFieldError('prezzo').defaultMessage}"></p>
+		
+		
+		<div
+			th:each="ingrediente : ${ingredienti}"
+			
+		>
+			<input th:id="${'ingrediente-' + ingrediente.id}" th:value="${ingrediente.id}" type="checkbox" name="ingredienti" th:checked="${pizza.ingredienti.contains(ingrediente)}">
+			<label th:for="${'ingrediente-' + ingrediente.id}">[[ ${ingrediente.nome} ]]</label>
+		</div>
+		
+		
 		<button type="submit">Modifica</button>
 	</form>
 </body>

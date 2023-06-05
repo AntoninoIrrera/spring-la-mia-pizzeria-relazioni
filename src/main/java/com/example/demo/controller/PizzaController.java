@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.pojo.Ingredienti;
 import com.example.demo.pojo.Pizza;
+import com.example.demo.service.IngredientiService;
 import com.example.demo.service.PizzaService;
 
 import jakarta.validation.Valid;
@@ -24,6 +26,9 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private IngredientiService ingredientiService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -60,10 +65,14 @@ public class PizzaController {
 		Optional<Pizza> firstPizzaOpt = pizzaService.findByIdWithOffertaSpeciale(id);
 		Pizza offertePizza = firstPizzaOpt.get();
 		
-	
 		
+		List<Ingredienti> ingredienti = pizza.getIngredienti();
+		
+		model.addAttribute("ingredienti",ingredienti);
 		model.addAttribute("pizza", pizza);
 		model.addAttribute("offerte",offertePizza.getOffertaSpeciales());
+		
+	
 		
 		return "pizzaShow";
 	}
@@ -72,6 +81,9 @@ public class PizzaController {
 	@GetMapping("/pizza/create")
 	public String createPizza(Model model) {
 		
+		List<Ingredienti> ingredienti = ingredientiService.findAll();
+		
+		model.addAttribute("ingredienti",ingredienti);
 		model.addAttribute("pizza",new Pizza());
 		
 		return "createForm";
@@ -122,8 +134,13 @@ public class PizzaController {
 		Pizza pizza = pizzaOpt.get();
 		model.addAttribute("pizza", pizza);
 		
+		List<Ingredienti> ingredienti = ingredientiService.findAll();
+		
+		model.addAttribute("ingredienti",ingredienti);
+		
 		return "updateForm";
 	}
+	
 	@PostMapping("/pizza/update/{id}")
 	public String updatePizza(
 			  @Valid

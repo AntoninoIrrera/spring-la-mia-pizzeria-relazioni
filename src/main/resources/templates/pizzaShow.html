@@ -30,6 +30,9 @@
 			<h1 th:text="${pizza.prezzo - (pizza.prezzo * offerta.percSconto / 100)}"></h1>
 	</div>
 	
+	<div>
+		<p th:each="ingrediente : ${ingredienti}" th:text="${ingrediente.nome}"></p>
+	</div>
 	
 	
 </body>

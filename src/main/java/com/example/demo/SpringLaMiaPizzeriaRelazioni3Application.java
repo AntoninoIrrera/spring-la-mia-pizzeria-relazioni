@@ -7,8 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.pojo.Ingredienti;
 import com.example.demo.pojo.OffertaSpeciale;
 import com.example.demo.pojo.Pizza;
+import com.example.demo.service.IngredientiService;
 import com.example.demo.service.OffertaSpecialeService;
 import com.example.demo.service.PizzaService;
 
@@ -24,6 +26,9 @@ public class SpringLaMiaPizzeriaRelazioni3Application implements CommandLineRunn
 
 	@Autowired
 	private OffertaSpecialeService offertaSpecialeService;
+	
+	@Autowired
+	private IngredientiService ingredientiService;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -64,6 +69,17 @@ public class SpringLaMiaPizzeriaRelazioni3Application implements CommandLineRunn
 		offertaSpecialeService.save(s4);
 		
 		
+		Ingredienti i1 = new Ingredienti("pomodoro");
+		
+		ingredientiService.save(i1);
+		
+		Ingredienti i2 = new Ingredienti("mozzarella");
+		ingredientiService.save(i2);
+		
+		Ingredienti i3 = new Ingredienti("patatine");
+		ingredientiService.save(i3);
+		Ingredienti i4 = new Ingredienti("olio");
+		ingredientiService.save(i4);
 	}
 
 }

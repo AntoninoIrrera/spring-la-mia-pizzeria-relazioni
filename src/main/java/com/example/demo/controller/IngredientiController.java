@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.pojo.Ingredienti;
+import com.example.demo.pojo.Pizza;
 import com.example.demo.service.IngredientiService;
 
 import jakarta.validation.Valid;
@@ -71,6 +72,17 @@ public class IngredientiController {
 		
 		Optional<Ingredienti> ingredientiOpt = ingredientiService.findById(id);
 		Ingredienti ingredienti = ingredientiOpt.get();
+		
+		if(ingredienti.getPizze().size() != 0) {
+			
+			for(Pizza p : ingredienti.getPizze()) {
+				
+				p.getIngredienti().remove(ingredienti);
+				
+			}
+			
+		}
+		
 		ingredientiService.deleteIngredienti(ingredienti);
 		
 		return "redirect:/";

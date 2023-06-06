@@ -121,6 +121,14 @@ public class PizzaController {
 		
 		Optional<Pizza> pizzaOpt = pizzaService.findById(id);
 		Pizza pizza = pizzaOpt.get();
+		
+		List<OffertaSpeciale> offerteSpeciali = pizza.getOffertaSpeciales();
+		
+		for(OffertaSpeciale o : offerteSpeciali) {
+			
+			offertaSpecialeService.deleteOfferte(o);
+		}
+		
 		pizzaService.deletePizza(pizza);
 		
 		return "redirect:/";
